@@ -1,0 +1,46 @@
+service: lambda-container-microservices
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: custom
+  ecr:
+    images:
+      go-ms:
+        path: ./goLang
+      javascript-ms:
+        path: ./javaScript
+      python-ms:
+        path: ./python
+
+functions:
+  jsIsolatedFunction: # Use specific routes to override your Micro-service when you are using the Strangler Pattern
+    runtime: nodejs20.x
+    memorySize: 512
+    handler: ./IsolatedJS/index.handler
+    events:
+      - http:
+          path: /js/api/isolated
+          method: GET
+
+  jsMicroservice:
+    image:
+      name: javascript-ms
+    events:
+      - http:
+          path: /js/{proxy+}
+          method: ANY
+  pythonMicroservice:
+    image:
+      name: python-ms
+    events:
+      - http:
+          path: /py/{proxy+}
+          method: ANY
+  goLangMicroservice:
+    image:
+      name: go-ms
+    events:
+      - http:
+          path: /go/{proxy+}
+          method: ANY

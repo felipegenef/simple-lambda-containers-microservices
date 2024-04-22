@@ -8,7 +8,7 @@ There are also some examples of how to make an isolated function appart from you
 
 #### Install AWS CLI
 
-Instructions can be found [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
+Instructions can be found [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
 
 #### deploy your app
 
@@ -37,4 +37,3 @@ curl baseURL/js/api
 ```bash
 curl baseURL/py/api
 ```
-# simple-lambda-containers-microservices
